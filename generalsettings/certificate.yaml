@@ -1,0 +1,15 @@
+apiVersion: cert-manager.io/v1
+kind: ClusterIssuer
+metadata:
+  name: lets-encrypt
+spec:
+  acme:
+    # The email address associated to lets-encrypt
+    email: "example@email.com"
+    server: https://acme-v02.api.letsencrypt.org/directory
+    privateKeySecretRef:
+      name: lets-encrypt-prod
+    solvers:
+      - http01:
+          ingress:
+            class: public

@@ -1,0 +1,248 @@
+{% extends 'admin_dashboardv2.html' %}
+
+{% block content%}
+
+<script src="{{ url_for('static', filename= 'scripts/submission_chart.js') }}"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/moment.js/2.29.1/moment.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/chart.js@2.9.4/dist/Chart.min.js"></script>
+<input type="hidden" id="input-csrf-token" name="csrf_token" value="{{ csrf_token() }}" />
+
+<div class="d-flex flex-column" style="height: 100%;  width: 100%; ">
+    <div class="container-fluid row group-dashboard-header-bar">
+        <h1>{% block title %} Groups {% endblock %}</h1>
+    </div>
+
+    <div class="d-flex flex-column page-content-scrollable">
+        <!-- Horizontal list of groups -->
+        <ul id="groups-list-scrollable" class="groups-list-scrollable container "></ul>
+
+        <!-- Group text description -->
+        <ul class="group-dashboard-home-text container container-bottom-grey" style="padding: 20px; ">
+            <li style="padding: 2px;   ">
+                <p style="text-decoration:none;">
+                    <span style="font-weight: bold;">Group Name</span>: <span id="admin-dashboard-groups-name"></span>
+                </p>
+            </li>
+            <li style="padding: 2px; ">
+                <p style="text-decoration:none;">
+                    <span style="font-weight: bold;">Tasks</span>: <span id="admin-dashboard-groups-taskname"></span>
+                    <span id="admin-dashboard-groups-taskid"></span>
+                </p>
+            </li>
+            <li style="padding: 2px; ">
+                <p style="text-decoration:none;">
+                    <span style="font-weight: bold;">Reference Email</span>: <span
+                        id="admin-dashboard-groups-members"></span>
+                </p>
+            </li>
+            <li style="padding: 2px; ">
+                <p style="text-decoration:none;">
+                    <span style="font-weight: bold;">Token</span>: <span id="admin-dashboard-groups-token"></span>
+                </p>
+            </li>
+            <li style="padding: 2px; ">
+                <p style="text-decoration:none;">
+                    <span style="font-weight: bold;">Password</span>: <span id="admin-dashboard-groups-password"></span>
+                </p>
+            </li>
+
+            <div class="container" style="margin-bottom: 15px; margin-top: 15px;">
+                <select id="task-picker" class="selectpicker" name="task" data-width="100%" >
+                </select>
+            </div>
+        </ul>
+
+        <!--<div class="container container-bottom-grey" style="padding: 10px 10px; margin-bottom: 15px;">
+            <select id="task-picker" class="selectpicker" name="task" data-width="100%" >
+            </select>
+        </div>-->
+
+
+        <!-- Boxes with group stats-->
+        <div class="container container-bottom-grey" style="padding: 0px 15px;">
+            
+
+            <div class="row">
+                <div class="container col-lg col-9 "
+                    style="box-shadow: var(--shadow-small); border-radius: 10px; margin: 10px 10px; background-color: white;">
+                    <div class="flex-column d-flex" style="height: 100%;">
+                        <div class="row group-dashboard-statistics-title-box">
+                            Submissions
+                        </div>
+                        <div class="row" style=" flex:1;margin-bottom: 10px; ">
+                            <div class="col-8 d-flex flex-column justify-content-center ">
+                                <p style="margin: 0px;">
+                                    <span class="group-dashboard-statistics-number-box" id="text-submission-number"
+                                        style="margin-left: -5px; color: var(--light-blue);">0</span>
+                                </p>
+                            </div>
+                            <div class="col-4 d-flex flex-column justify-content-center" style="padding: 0px;">
+                                <div class="container align-middle "
+                                    style="background-color: var(--light-blue); width: 50px; height: 50px; display: table; border-radius: 10px; box-shadow: var(--shadow-small);">
+                                    <i class="fas fa-paper-plane align-middle"
+                                        style="display: table-cell; font-size: 1.5em; color: white;"></i>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class=" container col-lg col-9"
+                    style="box-shadow: var(--shadow-small); border-radius: 10px; margin: 10px 0px; background-color: white;">
+                    <div class="flex-column d-flex" style="height: 100%;">
+                        <div class="row group-dashboard-statistics-title-box">
+                            QPU Time for the Task
+                        </div>
+                        <div class="row" style=" flex:1;margin-bottom: 10px; ">
+                            <div class="col-8 d-flex flex-column justify-content-center" style="padding-right: 2px;">
+                                <p style="margin: 0px; color:var(--green-aqua);">
+                                    <span class="group-dashboard-statistics-number-box" id="text-qpu-task-time-s"
+                                        style="margin-left: -5px;">0</span>
+                                    <span class="group-dashboard-statistics-units-box"
+                                        style="  margin-left: -2px;">s</span>
+                                    <span class="group-dashboard-statistics-number-box"
+                                        id="text-qpu-task-time-ms">0</span>
+                                    <span class="group-dashboard-statistics-units-box"
+                                        style="  margin-left: -2px;">ms</span>
+                                    <span class="group-dashboard-statistics-number-box"
+                                        id="text-qpu-task-time-us">0</span>
+                                    <span class="group-dashboard-statistics-units-box"
+                                        style="  margin-left: -2px;">us</span>
+                                </p>
+                            </div>
+                            <div class="col-4 d-flex flex-column justify-content-center" style="padding: 0px;">
+                                <div class="container align-middle"
+                                    style="background-color: var(--green-aqua); display: table; border-radius: 10px; height: 50px; width: 50px; box-shadow: var(--shadow-small);">
+                                    <i class="fas fa-hourglass-start align-middle"
+                                        style="display: table-cell; font-size: 1.5em; color: white;"></i>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class=" container col-lg col-9"
+                    style="box-shadow: var(--shadow-small); border-radius: 10px; margin: 10px 10px ; background-color: white;">
+                    <div class="flex-column d-flex" style="height: 100%;">
+                        <div class="row group-dashboard-statistics-title-box">
+                            QPU Time used
+                        </div>
+                        <div class="row" style=" flex:1; margin-bottom: 10px;">
+                            <div class="col-8 d-flex flex-column justify-content-center">
+                                <p style="margin: 0px; color:var(--orange-light);">
+                                    <span class="group-dashboard-statistics-number-box" id="text-qpu-used-time-s"
+                                        style="margin-left: -5px;">0</span>
+                                    <span class="group-dashboard-statistics-units-box"
+                                        style=" margin-left: -2px;">s</span>
+                                    <span class="group-dashboard-statistics-number-box"
+                                        id="text-qpu-used-time-ms">0</span>
+                                    <span class="group-dashboard-statistics-units-box"
+                                        style="margin-left: -2px;">ms</span>
+                                    <span class="group-dashboard-statistics-number-box"
+                                        id="text-qpu-used-time-us">0</span>
+                                    <span class="group-dashboard-statistics-units-box"
+                                        style="margin-left: -2px;">us</span>
+                                </p>
+                            </div>
+                            <div class="col-4 d-flex flex-column justify-content-center" style="padding: 0px;">
+                                <div class="container align-middle"
+                                    style="background-color: var(--orange-light); display: table; border-radius: 10px; height: 50px; width: 50px; box-shadow: var(--shadow-small);">
+                                    <i class="fas fa-hourglass-half align-middle"
+                                        style="display: table-cell; font-size: 1.5em; color: white;"></i>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Progress bar with group stats-->
+        <div class="container container-bottom-grey"
+            style="padding:0px 20px 25px 20px;margin-top:15px; margin-bottom:15px; ">
+            <div class="progress-outer" style="width: 100%;">
+                <div class="progress">
+                    <div id="bar-percentage-submissions"
+                        class="progress-bar progress-bar-info progress-bar-striped active "
+                        style="width:0%; box-shadow:-1px 5px 5px rgba(91, 192, 222, 0.7);"></div>
+                    <div id="bar-percentage-submissions-text" class="progress-value">0%</div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Chart with group stats-->
+        <div class="container container-bottom-grey" style="margin-bottom: 20px; height: 50vh;  margin-top:15px;">
+            <div class="flex-column d-flex"
+                style=" height: 100%; background-color: white; border-radius: 10px; box-shadow: 0px 0px 5px rgba(57, 62, 70, 0.5); padding: 0px 15px;">
+                <div class="row group-dashboard-statistics-title-box">
+                    QPU usage over time
+                </div>
+                <div class="row" style=" flex:1;  ">
+                    <canvas id="submissionChart"></canvas>
+                </div>
+            </div>
+
+
+        </div>
+    </div>
+</div>
+<script src="{{ url_for('static', filename= 'scripts/admin_groups.js') }}"></script>
+
+
+<div class="modal fade" id="modalAdmission" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+    <div class="modal-dialog modal-dialog-centered">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title">Add a Group</h5>
+            </div>
+            <div class="modal-body">
+
+                <label for="add-group-name" class="login-label-input-text">Name:</label>
+                <input class="login-input-text" id="add-group-name" name="name"><br><br>
+
+                <label for="add-group-email" class="login-label-input-text">Email:</label>
+                <input class="login-input-text" type="email" id="add-group-email" name="email"><br><br>
+
+                <label for="add-group-password" class="login-label-input-text">Password:</label>
+                <input class="login-input-text" id="add-group-password" name="password" minlength="8"
+                    maxlength="20"><br><br>
+
+                <label for="add-group-task" class="login-label-input-text">Task:</label>
+                <select id="add-group-task" class="selectpicker" name="task" data-width="100%" multiple >
+                </select>
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-secondary" data-mdb-dismiss="modal"
+                    onclick="closeModalAdmission()">Close</button>
+                <button type="button" class="btn btn-primary"
+                    onclick="editAdmissionStatus('modal-admission-data','admin-dashboard-groups-admission','')">Save
+                    changes</button>
+            </div>
+        </div>
+    </div>
+</div>
+
+<li id="group-list-item-generator" class="group-list-item " onclick=""
+    style="width: fit-content;  padding: 0px 10px; display: none; ">
+    <div class="row " style="justify-content: center; align-items: center; height: 100%;">
+        <div class="list-group-name" style=" margin-left: 15px; margin-right: 5px; ">
+        </div>
+        <div style="margin-right: 15px;">
+            <i class="fas fa-users" style="color: rgb(13, 101, 234);"></i>
+        </div>
+    </div>
+</li>
+
+<div class="fab-container">
+    <button class="fab" onclick="showModalAdmission()">+</button>
+</div>
+
+<script>
+    $("#groups-list-scrollable").on("wheel", (e) => {
+        e.preventDefault();
+        $("#groups-list-scrollable").scrollLeft(e.deltaY / 2);
+    });
+</script>
+
+
+{% endblock %}

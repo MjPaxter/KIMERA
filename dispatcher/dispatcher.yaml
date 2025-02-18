@@ -1,0 +1,65 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: dispatcher-deployment 
+  labels:
+    app: dispatcher
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: dispatcher
+  template:
+    metadata:
+      labels:
+        app: dispatcher
+    spec:
+      containers:
+        - name: dispatcher
+          image: dispatcher
+          imagePullPolicy: Never # This must be set to Never since it is a customized image
+
+          ports: # The port exposed outside the container
+            - containerPort: 5000
+
+          env:
+            - name: POSTGRES_PASSWORD
+              valueFrom:
+                secretKeyRef:
+                  name: cluster-secret
+                  key: postgres-root-password
+            - name: POSTGRES_USER
+              valueFrom:
+                secretKeyRef:
+                  name: cluster-secret
+                  key: postgres-root-username
+            - name: POSTGRES_DB
+              valueFrom:
+                secretKeyRef:
+                  name: cluster-secret
+                  key: postgres-database-name
+
+            - name: QA_TOKEN
+              valueFrom:
+                secretKeyRef:
+                  name: cluster-secret
+                  key: qpu-token
+
+            - name: DATABASE_URL
+              valueFrom:
+                configMapKeyRef:
+                  name: cluster-configmap
+                  key: database_url
+
+---
+apiVersion: v1
+kind: Service
+metadata:
+  name: dispatcher-service
+spec:
+  selector:
+    app: dispatcher
+  ports:
+    - protocol: TCP
+      port: 5000
+      targetPort: 5000

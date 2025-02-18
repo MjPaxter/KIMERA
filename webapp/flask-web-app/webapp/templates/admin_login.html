@@ -1,0 +1,27 @@
+{% extends 'base.html' %}
+
+{% set active_page = "login" %}
+
+{% block content%}
+
+<h1>{% block title %} Admin: Login {% endblock %}</h1>
+
+<div class="container-fluid login-box">
+    <form method="post" id="admin-login-form">
+        <input type="hidden" id="input-csrf-token" name="csrf_token" value="{{ csrf_token() }}" />
+
+        <label for="admin-email" class="login-label-input-text">Username:</label>
+        <input class="login-input-text" id="admin-email" name="email"><br><br>
+
+        <label for="admin-password" class="login-label-input-text">Password:</label>
+        <input class="login-input-text" type="password" id="admin-password" name="password" minlength="8" maxlength="20"><br><br>
+
+        <div class="text-center">
+            <input type="submit" class="submit-button" value="Login" style="margin-top: 10px;">
+        </div>
+    </form>
+</div>
+
+<script src="{{ url_for('static', filename= 'scripts/admin_login.js') }}"></script>
+
+{% endblock content %}

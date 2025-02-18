@@ -1,0 +1,73 @@
+{% extends 'admin_dashboardv2.html' %}
+
+{% block content%}
+<script src="https://unpkg.com/@lottiefiles/lottie-player@latest/dist/lottie-player.js"></script>
+<script src="{{ url_for('static', filename= 'scripts/admin_tasks.js') }}"></script>
+<script src="{{ url_for('static', filename= 'scripts/ajax_calls.js') }}"></script>
+<input type="hidden" id="input-csrf-token" name="csrf_token" value="{{ csrf_token() }}" />
+
+<div class="d-flex flex-column" style="height: 100%;  width: 100%; ">
+    <div class="container-fluid row group-dashboard-header-bar">
+        <h1>{% block title %} Tasks {% endblock %}</h1>
+    </div>
+
+    <div class="d-flex flex-column page-content-scrollable">
+        <p>Here it is possible to view and edit the tasks</p>
+        <div class="row container-bottom-grey"
+			style="margin-top:15px; margin-right: 0px; margin-left: 0px;  ">
+                <table id="data-table" style="width: 100%;">
+                    <thead>
+                        <tr>
+                            <th>ID</th>
+                            <th>Name</th>
+                            <th>Description</th>
+                            <th>Monthly quota (us)</th>
+                            <th>Action</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                    </tbody>
+                </table>
+        </div>
+    </div>
+
+</div>
+<div class="modal fade" id="modalTaskAdd" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+    <div class="modal-dialog modal-dialog-centered">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title">Add a Task</h5>
+            </div>
+            <div class="modal-body">
+                <label for="add-task-id" class="login-label-input-text">ID:</label>
+                <input class="login-input-text" id="add-task-id" name="id"><br><br>
+
+                <label for="add-task-name" class="login-label-input-text">Name:</label>
+                <input class="login-input-text" id="add-task-name" name="name"><br><br>
+
+                <label for="add-task-description" class="login-label-input-text">Description:</label>
+                <input class="login-input-text" type="email" id="add-task-description" name="description"><br><br>
+
+                <label for="add-task-quota" class="login-label-input-text">Quota (us):</label>
+                <input class="login-input-text" id="add-task-quota" name="quota" ><br><br>
+
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-secondary" data-mdb-dismiss="modal"
+                    onclick="closeModalTaskAdd()">Close</button>
+                <button type="button" class="btn btn-secondary" data-mdb-dismiss="modal"
+                    onclick="deleteTask()">Delete</button>
+                <button type="button" class="btn btn-primary"
+                    onclick="addTask('modal-admission-data','admin-dashboard-groups-admission','')">Save
+                    changes</button>
+            </div>
+        </div>
+    </div>
+</div>
+
+
+
+<div class="fab-container">
+    <button class="fab" onclick="showModalTaskAdd()">+</button>
+</div>
+{% endblock %}

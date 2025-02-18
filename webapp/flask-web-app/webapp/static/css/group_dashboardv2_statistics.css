@@ -1,0 +1,168 @@
+/***** GROUP-DASHBOARD-STATISTICS-TITLE-BOX **************************************************************************************/
+.group-dashboard-statistics-title-box {
+    font-size: 17px;
+    padding-left: 12px;
+    padding-top: 7px;
+    font-weight: bold;
+}
+
+/* On screens that are 1000px or less */
+@media screen and (max-width: 1000px) {
+    .group-dashboard-statistics-title-box {
+        font-size: 15px;
+    }
+}
+
+/* On screens that are 500px or less */
+@media screen and (max-width: 670px) {
+    .group-dashboard-statistics-title-box {
+        font-size: 14px;
+    }
+}
+
+/*************************************************************************************************/
+
+/***** GROUP-DASHBOARD-STATISTICS-CHART-BOX **************************************************************************************/
+.group-dashboard-statistics-chart-box {
+    border-radius: 10px;
+}
+
+@media screen and (max-width: 1200px) {
+    .group-dashboard-statistics-chart-box {
+        margin-bottom: 20px;
+    }
+}
+
+/*************************************************************************************************/
+
+/***** GROUP-DASHBOARD-STATISTICS-DATA-BOX **************************************************************************************/
+.group-dashboard-statistics-data-box {
+    background-color: white;
+    flex: 1;
+    border-radius: 10px;
+    box-shadow: 0px 0px 5px rgba(57, 62, 70, 0.5);
+}
+
+.group-dashboard-statistics-data-box:nth-child(1) {
+    margin-top: 0px;
+    margin-bottom: 10px;
+}
+
+.group-dashboard-statistics-data-box:nth-child(2) {
+    margin-top: 0px;
+    margin-bottom: 10px;
+}
+
+.group-dashboard-statistics-data-box:nth-child(3){
+    margin-top: 0px;
+    margin-bottom: 0px;
+}
+
+/* On screens that are 1200px or less */
+@media screen and (max-width: 1200px) {
+    .group-dashboard-statistics-data-box:nth-child(1) {
+        margin-top: 0px;
+        margin-bottom: 0px;
+    }
+
+    .group-dashboard-statistics-data-box:nth-child(2) {
+        margin-top: 10px;
+        margin-bottom: 0px;
+    }
+
+    .group-dashboard-statistics-data-box:nth-child(3) {
+        margin-top: 10px;
+        margin-bottom: 0px;
+    }
+
+    .group-dashboard-statistics-data-container {
+        margin-top: 15px;
+    }
+}
+
+/*************************************************************************************************/
+
+/***** GROUP-DASHBOARD-STATISTICS-NUMBER-BOX **************************************************************************************/
+.group-dashboard-statistics-number-box {
+    font-size: 35px;
+}
+
+/* On screens that are 1000px or less */
+@media screen and (max-width: 1400px) {
+    .group-dashboard-statistics-number-box {
+        font-size: 30px;
+    }
+}
+
+/* On screens that are 1000px or less */
+@media screen and (max-width: 1000px) {
+    .group-dashboard-statistics-number-box {
+        font-size: 25px;
+    }
+}
+
+/* On screens that are 500px or less */
+@media screen and (max-width: 670px) {
+    .group-dashboard-statistics-number-box {
+        font-size: 20px;
+    }
+}
+
+/*************************************************************************************************/
+
+/***** GROUP-DASHBOARD-STATISTICS-UNITS-BOX **************************************************************************************/
+.group-dashboard-statistics-units-box {
+    font-size: 20px;
+}
+
+/* On screens that are 1000px or less */
+@media screen and (max-width: 1400px) {
+    .group-dashboard-statistics-units-box {
+        font-size: 19px;
+    }
+}
+
+/* On screens that are 1000px or less */
+@media screen and (max-width: 1000px) {
+    .group-dashboard-statistics-units-box {
+        font-size: 17px;
+    }
+}
+
+/* On screens that are 500px or less */
+@media screen and (max-width: 670px) {
+    .group-dashboard-statistics-units-box {
+        font-size: 15px;
+    }
+}
+
+/*************************************************************************************************/
+
+
+
+
+
+
+/***** GROUP-DASHBOARD-STATISTICS-ICONS-BOX **************************************************************************************/
+.group-dashboard-statistics-icons-box {
+    height: 50px;
+    width: 50px;
+}
+
+/* On screens that are 1200px or less */
+@media screen and (max-width: 1200px) {
+    .group-dashboard-statistics-icons-box {
+        height: 40px;
+        width: 20px;
+    }
+}
+
+/* On screens that are 500px or less */
+@media screen and (max-width: 670px) {
+    .group-dashboard-statistics-icons-box {
+        height: 30px;
+        width: 30px;
+    }
+}
+
+/*************************************************************************************************/

@@ -1,0 +1,30 @@
+apiVersion: networking.k8s.io/v1
+kind: Ingress
+metadata:
+  name: http-ingress
+  annotations:
+    nginx.ingress.kubernetes.io/use-regex: "true"
+    nginx.ingress.kubernetes.io/rewrite-target: /$1
+    kubernetes.io/ingress.class: public
+    cert-manager.io/cluster-issuer: 'lets-encrypt'
+spec:
+  tls:
+  - hosts:
+    - qclef-infrastructure.dei.unipd.it
+    secretName: qclef-ingress-tls
+  rules:
+  - host: qclef-infrastructure.dei.unipd.it
+    http:
+      paths:
+
+      # Webapp path
+      - path: /(.*)
+        pathType: Prefix
+        backend:
+          service:
+            name: webapp-service
+            port:
+              number: 5000
+
+      # Hereunder it will be filled with the routes to the workspaces
+

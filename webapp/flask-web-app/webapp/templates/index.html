@@ -1,0 +1,26 @@
+{% extends 'base.html' %}
+
+{% set active_page = "home" %}
+
+{% block content %}
+<script src="https://unpkg.com/@lottiefiles/lottie-player@latest/dist/lottie-player.js"></script>
+<div class="container-fluid homepage-container-match-height">
+    <div class="row">
+        <!--Column-->
+        <div class="col-md-6 ">
+            <h1 class="homepage-title">Welcome to QuantumCLEF</h1>
+            <p class="homepage-description">
+                QuantumCLEF is a Lab aiming at assessing the performance of Quantum Annealing solutions applied to the
+                Information Access field. This is the official platform that allows you to monitor your QPU
+                quotas and have access to your own workspace to program real quantum annealers.
+            </p>
+        </div>
+        <!--Column-->
+        <div class="col-md-6">
+            <lottie-player src="{{ url_for('static', filename= 'images/atom.json') }}" background="transparent"
+                speed="1" class="homepage-lottie" loop autoplay>
+            </lottie-player>
+        </div>
+    </div>
+</div>
+{% endblock %}

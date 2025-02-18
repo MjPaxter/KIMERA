@@ -1,0 +1,159 @@
+{% set logged = logged_in %}
+
+<!doctype html>
+<html lang="en">
+
+<head>
+    <!-- Popper.js and Tooltip.js -->
+    <script src="{{url_for('static',filename='libraries/popper.js/popper.min.js')}}"></script>
+    <script src="{{url_for('static',filename='libraries/tooltip.js/tooltip.min.js')}}"></script>
+
+    <!-- JQuery -->
+    <script src="{{url_for('static',filename='libraries/jquery/jquery.min.js')}}"></script>
+    <script src="{{url_for('static',filename='libraries/jquery-ui.min.js')}}"></script>
+
+    <!-- JQuery-Confirm -->
+    <script src="{{url_for('static',filename='libraries/jquery-confirm/jquery-confirm.min.js')}}"></script>
+    <link rel="stylesheet" href="{{url_for('static',filename='libraries/jquery-confirm/jquery-confirm.min.css')}}">
+
+    <!-- JQuery-Contextmenu -->
+    <script src="{{url_for('static',filename='libraries/jquery-contextmenu/jquery.contextMenu.min.js')}}"></script>
+    <link rel="stylesheet" href="{{url_for('static',filename='libraries/jquery-contextmenu/jquery.contextMenu.min.css')}}">
+
+    <!-- Bootstrap CSS and JS -->
+    <link rel="stylesheet" href="{{url_for('static',filename='libraries/bootstrap-4.4.1-dist/css/bootstrap.min.css')}}">
+    <script src="{{url_for('static',filename='libraries/bootstrap-4.4.1-dist/js/bootstrap.bundle.min.js')}}"></script>
+
+    <!-- Bootstrap select -->
+    <link rel="stylesheet"
+        href="{{url_for('static',filename='libraries/bootstrap-select-1.13.14/dist/css/bootstrap-select.min.css')}}">
+    <script
+        src="{{url_for('static',filename='libraries/bootstrap-select-1.13.14/dist/js/bootstrap-select.min.js')}}"></script>
+
+    <!-- Fontawesome CSS-->
+    <link rel="stylesheet" href="{{url_for('static',filename='libraries/fontawesome-free-5.15.4-web/css/all.css')}}">
+
+    <!-- Required meta tags -->
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+
+
+    <link rel="stylesheet" href="{{ url_for('static', filename= 'css/style.css') }}">
+    <link rel="stylesheet" href="{{ url_for('static', filename= 'css/forms.css') }}">
+    <link rel="stylesheet" href="{{ url_for('static', filename= 'css/snackbar.css') }}">
+    <link rel="stylesheet" href="{{ url_for('static', filename= 'css/howitworks.css') }}">
+    <link rel="stylesheet" href="{{ url_for('static', filename= 'css/homepage.css') }}">
+    <link rel="stylesheet" href="{{ url_for('static', filename= 'css/login.css') }}">
+    <link rel="stylesheet" href="{{ url_for('static', filename= 'css/apply.css') }}">
+    <link rel="stylesheet" href="{{ url_for('static', filename= 'css/group_dashboard.css') }}">
+    <link rel="stylesheet" href="{{ url_for('static', filename= 'css/buttons.css') }}">
+
+    <script src="{{ url_for('static', filename= 'scripts/snackbar.js') }}"></script>
+    <script src="{{ url_for('static', filename= 'scripts/csrf_protection.js') }}"></script>
+    <script src="{{ url_for('static', filename= 'scripts/ajax_calls.js') }}"></script>
+
+    <title>{% block title %} {% endblock %}</title>
+</head>
+
+<body>
+    <nav class="navbar navbar-expand-md navbar-light bg-light  sticky-top" style="height: 80px;">
+        <a class="navbar-brand" href="{{ url_for('index')}}">
+            <img src="{{ url_for('static', filename= 'images/logo.png') }}" width="50" height="50"
+                class="d-inline-block align-center" alt="logo">
+            QuantumCLEF
+        </a>
+
+        <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNav"
+            aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+            <span class="navbar-toggler-icon"></span>
+        </button>
+        <div class="collapse navbar-collapse" id="navbarNav">
+            <ul class="navbar-nav ml-auto">
+                <li class="{{ 'nav-link active' if active_page == 'home' else 'nav-link' }}">
+                    <a class="nav-link" href="/">Home</a>
+                </li>
+                
+                <li class="{{ 'nav-link active' if active_page == 'howitworks' else 'nav-link' }}">
+                    <a class="nav-link" href="https://qclef.dei.unipd.it/index.html" target="_blank">How it works</a>
+                </li>
+                <!--<li class="{{ 'nav-link active' if active_page == 'tasks' else 'nav-link' }}">
+                    <a class="nav-link" href="/tasks">Tasks</a>
+                </li>-->
+                <!--<li class="{{ 'nav-link active' if active_page == 'task1' else 'nav-link' }}">
+                    <a class="nav-link" href="task1">Quantum Feature Selection</a>
+                </li>
+                <li class="{{ 'nav-link active' if active_page == 'task2' else 'nav-link' }}">
+                    <a class="nav-link" href="task2">Quantum Clustering</a>
+                </li>
+                <li class="{{ 'nav-link active' if active_page == 'task3' else 'nav-link' }}">
+                    <a class="nav-link" href="task3">Quantum Boosting</a>
+                </li>-->
+                <!--
+                <li class="{{ 'nav-link active' if active_page == 'apply' else 'nav-link' }}">
+                    <a class="nav-link" href="/apply">Apply</a>
+                </li>-->
+                {% if logged == 'group' %}
+                <li class="{{ 'nav-link active' if active_page == 'dashboard' else 'nav-link' }}">
+                    <a class="nav-link" href="/dashboard/" target="_blank">Dashboard</a>
+                </li>
+                {% endif %}
+                {% if logged == 'group' %}
+                <li class="{{ 'nav-link active' if active_page == 'workspace' else 'nav-link' }}">
+                    <a class="nav-link" href="/workspace" target="_blank">Workspace</a>
+                </li>
+                {% endif %}
+                {% if logged == 'admin' %}
+                <li class="{{ 'nav-link active' if active_page == 'admindashboard' else 'nav-link' }}">
+                    <a class="nav-link" href="/admin/dashboard">Dashboard</a>
+                </li>
+                {% endif %}
+                {% if logged == 'guest' %}
+                <li class="{{ 'nav-link active' if active_page == 'login' else 'nav-link' }}">
+                    <a class="nav-link" href="/login">Login</a>
+                </li>
+                {% endif %}
+
+                {% if logged == 'group' or logged == 'admin' %}
+                <li class="nav-link">
+                    <a class="nav-link" href="/logout">Logout</a>
+                </li>
+                {% endif %}
+            </ul>
+        </div>
+    </nav>
+    <div id="snackbar" class="text-center">
+        <span id="snackbar-error-code"></span>
+        <span id="snackbar-error-message"></span>
+    </div>
+    <div class="container-fluid background-page">
+        {% block content %} {% endblock %}
+    </div>
+
+    <div class="footer-basic" style="height: 80px;">
+        <footer>
+
+            <ul class="list-inline">
+                <li class="list-inline-item"><a href="/">Home</a></li>
+                <li class="list-inline-item"><a href="https://qclef.dei.unipd.it/index.html">How it works</a></li>
+                <!--<li class="list-inline-item"><a href="/howitworks">How it works</a></li>
+                <li class="list-inline-item"><a href="/tasks">Tasks</a></li>-->
+                <li class="list-inline-item"><a href="https://clef2024.clef-initiative.eu/">About CLEF</a></li>
+                <li class="list-inline-item"><a href="/admin/login">Maintenance</a></li>
+                <!--<li class="list-inline-item"><a href="#">Privacy Policy</a></li>-->
+            </ul>
+            <p class="copyright">QuantumCLEF © 2024</p>
+        </footer>
+    </div>
+    <!--<div class="footer">
+        {% block footer %} {% endblock %}
+    </div>-->
+
+    <!-- Optional JavaScript -->
+    <!-- jQuery first, then Popper.js, then Bootstrap JS -->
+
+</body>
+
+
+
+
+</html>

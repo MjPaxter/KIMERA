@@ -1,0 +1,36 @@
+{% extends 'base.html' %}
+
+{% set active_page = "login" %}
+
+{% block content%}
+
+<script src="https://unpkg.com/@lottiefiles/lottie-player@latest/dist/lottie-player.js"></script>
+
+<h1 class="login-title">{% block title %} Login {% endblock %}</h1>
+
+<div class="container-fluid login-container">
+    <div style="display: flex;justify-content: center;align-items: center; max-height: 250px; overflow: hidden;">
+        <lottie-player src="{{ url_for('static', filename= 'images/waving.json') }}" background="transparent" speed="1"
+            class="login-lottie" loop autoplay>
+        </lottie-player>
+    </div>
+
+    <form method="post" id="login-form">
+        <input type="hidden" id="input-csrf-token" name="csrf_token" value="{{ csrf_token() }}" />
+
+        <label for="group-email" class="login-label-input-text">Team Email:
+        </label>
+        <input class="login-input-text" type="email" id="group-email" name="group-email"><br><br>
+
+        <label for="group-password" class="login-label-input-text">Password:</label>
+        <input class="login-input-text" type="password" id="group-password" name="group-password" minlength="8" maxlength="20"><br><br>
+
+        <div class="text-center">
+            <input type="submit" class="submit-button" value="Login" style="margin-top: 10px;">
+        </div>
+    </form>
+</div>
+
+<script src="{{ url_for('static', filename= 'scripts/login.js') }}"></script>
+
+{% endblock content %}

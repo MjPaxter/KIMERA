@@ -1,0 +1,22 @@
+/***** TEXT-HOME **************************************************************************************/
+.group-dashboard-home-text {
+    font-size: 18px;
+    color: var(--black);
+}
+
+
+/* On screens that are 1000px or less */
+@media screen and (max-width: 1000px) {
+    .group-dashboard-home-text {
+        font-size: 17px;
+    }
+}
+
+/* On screens that are 500px or less */
+@media screen and (max-width: 670px) {
+    .group-dashboard-home-text {
+        font-size: 14px;
+    }
+}
+
+/*************************************************************************************************/

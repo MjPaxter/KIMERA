@@ -1,0 +1,66 @@
+#snackbar {
+	visibility: hidden;
+	min-width: 250px;
+	max-width: 500px;
+	background-color: #1a212c;
+	text-align: center;
+	border-radius: 2px;
+	padding: 16px;
+	position: fixed;
+	left: 50%;
+	transform: translateX(-50%);
+	bottom: 30px;
+	font-size: 17px;
+	border-radius: 10px;
+	box-shadow: var(--shadow-big);
+	z-index: 99999;
+}
+
+#snackbar-error-code {
+	font-weight: bold;
+}
+
+#snackbar-error-message {
+	color: #fff;
+}
+
+#snackbar.show-ok {
+	visibility: visible;
+	animation: fadein 0.5s, fadeout 0.5s 2.5s;
+}
+
+#snackbar.show-error {
+	visibility: visible;
+	animation: fadein 0.5s, fadeout 0.5s 4.5s;
+}
+
+#snackbar.hide{
+	min-width: 250px;
+	max-width: 500px;
+	visibility: visible;
+	animation: fadeout 0.5s;
+}
+
+@keyframes fadein {
+	from {
+		bottom: 0;
+		opacity: 0;
+	}
+
+	to {
+		bottom: 30px;
+		opacity: 1;
+	}
+}
+
+@keyframes fadeout {
+	from {
+		bottom: 30px;
+		opacity: 1;
+	}
+
+	to {
+		bottom: 0;
+		opacity: 0;
+	}
+}

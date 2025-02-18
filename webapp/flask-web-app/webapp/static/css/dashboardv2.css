@@ -1,0 +1,326 @@
+/*** SIDEBAR **********************************************************************************************/
+.sidebar-bottom {
+	display: inline;
+	max-width: 300px;
+	overflow: hidden;
+	position: relative;
+	transition: max-width 0.5s;
+}
+
+.sidebar {
+	display: inline;
+	max-width: 300px;
+	height: 100vh;
+	background-color: var(--white);
+	z-index: 1;
+	box-shadow: 0px 0px 7px rgba(57, 62, 70, 0.5);
+	overflow: hidden;
+	position: fixed;
+	transition: max-width 0.5s;
+}
+
+@media (max-width: 600px), (max-height: 670px) {
+	.sidebar {
+		display: none;
+	}
+
+	.sidebar-bottom {
+		display: none;
+	}
+}
+
+.sidebar-navlink {
+	padding: 26px;
+	padding-top: 100px;
+}
+
+.sidebar.shrink_sidebar ul li a span {
+	opacity: 0;
+	transition: all 0.4s ease;
+}
+
+.sidebar-bottom.shrink_sidebar {
+	max-width: 100px;
+	transition: max-width 0.5s;
+}
+
+.sidebar.shrink_sidebar {
+	max-width: 100px;
+	transition: max-width 0.5s;
+}
+
+.sidebar.shrink_sidebar .colleps-btn {
+	transform: rotate(90deg);
+}
+
+.colleps-btn {
+	background-color: transparent;
+	position: absolute;
+	bottom: 40px;
+	right: 30px;
+	border: none;
+	font-size: 26px;
+	transform: rotate(-90deg);
+	cursor: pointer;
+	padding: 12px;
+	color: var(--black);
+	transition: all 0.4s ease;
+}
+
+/*************************************************************************************************/
+
+ul {
+	list-style: none;
+	padding-top: 100px;
+}
+
+a {
+	text-decoration: none;
+}
+
+ul li:not(:last-child) {
+	padding-bottom: 40px;
+}
+
+ul li a {
+	padding: 12px;
+	color: var(--black);
+	font-size: 22px;
+	line-height: 30px;
+	transition: all 0.3s ease;
+	border-radius: 6px;
+	display: block;
+	white-space: nowrap;
+}
+
+ul li a span {
+	white-space: nowrap;
+}
+
+ul li a:hover {
+	background-color: rgba(128, 128, 128, 0.114);
+}
+
+
+/*** DARK THEME **********************************************************************************************/
+.toggle-dark-theme {
+	position: absolute;
+	top: 30px;
+	right: 30px;
+	cursor: pointer;
+	z-index: 900;
+}
+
+.toggle-dark-theme button {
+	width: 70px;
+	background-color: gray;
+	border-radius: 20px;
+	border: none;
+	position: relative;
+	padding: 4px;
+	cursor: pointer;
+
+	box-shadow: 0 3px 3px rgba(47, 47, 52, 0.8);
+}
+
+.toggle-dark-theme .icon {
+	width: 26px;
+	height: 26px;
+	border-radius: 50%;
+	background-color: rgb(50, 0, 106);
+	position: relative;
+	transition: all 0.5s ease;
+}
+
+.toggle-dark-theme .icon::before {
+	font-family: "Font Awesome 6 Free";
+	font-weight: 400;
+	position: absolute;
+	color: white;
+	top: 50%;
+	left: 50%;
+	transform: translate(-50%, -50%);
+	transition: all 0.5s ease;
+}
+
+body.dark .toggle-dark-theme .icon {
+	transform: translateX(calc(100% + 10px));
+	background-color: yellow;
+}
+
+body.dark .toggle-dark-theme .icon::before {
+	color: black;
+	/*content: "\f185";*/
+}
+
+/*************************************************************************************************/
+
+.dashboard-homepage-lottie {
+	width: 40vw;
+	max-width: 400px;
+	min-width: 250px;
+	margin-left: auto;
+	margin-right: auto;
+}
+
+
+/*** TYPEWRITER EFFECT ***************************************************************************************/
+.typewriter h1 {
+	width: fit-content;
+	overflow: hidden;
+	/* Ensures the content is not revealed until the animation */
+	border-right: .15em solid orange;
+	/* The typwriter cursor */
+	white-space: nowrap;
+	/* Keeps the content on a single line */
+	margin: 0 auto;
+	/* Gives that scrolling effect as the typing happens */
+	animation:
+		typing 2.5s steps(18, end),
+		blink-caret .7s step-end infinite;
+}
+
+@keyframes typing {
+	from {
+		width: 0
+	}
+
+	to {
+		width: 100%
+	}
+}
+
+@keyframes blink-caret {
+
+	from,
+	to {
+		border-color: transparent
+	}
+
+	50% {
+		border-color: orange
+	}
+}
+
+/*************************************************************************************************/
+
+button:focus {
+	outline: none;
+}
+
+/*** BOTTOM NAV BAR **********************************************************************************************/
+.navbar {
+	overflow: hidden;
+	position: fixed;
+	bottom: 0;
+	width: 100%;
+	visibility: hidden;
+	box-shadow: 0px 0px 7px rgba(57, 62, 70, 0.5);
+	background-color: var(--white);
+}
+
+@media (max-width: 600px), (max-height: 670px){
+	.navbar {
+		visibility: visible;
+	}
+
+	.navbar a {
+		float: left;
+		display: block;
+		text-align: center;
+		padding: 14px 16px;
+		text-decoration: none;
+		font-size: 17px;
+		color: var(--black);
+	}
+
+	.navbar a.active {
+		color: white;
+	}
+
+	.spacer-top {
+		height: 70px;
+		width: 100%;
+	}
+
+	.spacer-bottom {
+		height: 70px;
+		width: 100%;
+		position: relative;
+	}
+}
+
+/*************************************************************************************************/
+
+
+
+/***** HEADER-BAR **************************************************************************************/
+.group-dashboard-header-bar {
+	height: 100px;
+	width: 100%;
+	padding: 0px;
+	margin: 0px;
+	align-items: center;
+	justify-content: center;
+	box-shadow: 7px 0px 7px rgba(57, 62, 70, 0.5);
+	background-color: var(--white);
+	z-index: 3;
+}
+
+.page-content-scrollable {
+	overflow: auto;
+	padding: 50px;
+}
+
+.group-dashboard-header-bar h1 {
+	margin: 0px;
+	text-align: center;
+	font-size: 60px;
+	line-height: 70px;
+	color: var(--black);
+}
+
+/* On screens that are 1000px or less */
+@media screen and (max-width: 1000px) {
+	.group-dashboard-header-bar h1 {
+		font-size: 40px;
+		line-height: 50px;
+	}
+}
+
+/* On screens that are 500px or less */
+@media screen and (max-width: 600px), screen and (max-height: 670px) {
+	.group-dashboard-header-bar h1 {
+		font-size: 23px;
+		line-height: 30px;
+	}
+
+	.group-dashboard-header-bar {
+		height: 70px;
+		position: fixed;
+		top: 0px;
+	}
+
+	.page-content-scrollable {
+		overflow: visible;
+		padding: 0px 20px;
+	}
+}
+
+/* On screens that are 500px or less */
+@media screen and (max-width: 370px) {
+	.group-dashboard-header-bar h1 {
+		font-size: 18px;
+		line-height: 26px;
+	}
+}
+
+/*************************************************************************************************/
+
+
+.container-bottom-grey{
+	padding:10px;
+	background-color: var(--container-bottom-grey); 
+	border-radius: 10px; 
+	width: 100%; 
+}

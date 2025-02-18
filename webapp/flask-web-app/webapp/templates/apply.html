@@ -1,0 +1,66 @@
+{% extends 'base.html' %}
+
+{% set active_page = "apply" %}
+
+{% block content%}
+
+<h1 class="apply-title">{% block title %} Register your Team {% endblock %}</h1>
+
+<div class="container-fluid apply-container">
+    <form method="post" id="apply-form">
+        <input type="hidden" id="input-csrf-token" name="csrf_token" value="{{ csrf_token() }}" />
+
+        <label for="apply-group-name" class="login-label-input-text">Team Name:</label>
+        <input class="login-input-text" type="text" id="apply-group-name" name="name"><br><br>
+
+        <label for="apply-group-description" class="login-label-input-text">Short description:</label>
+        <textarea class="login-input-text" type="text" id="apply-group-description"
+            name="description"></textarea><br><br>
+
+        <div style="position: relative; width: 100%;">
+            <label class="login-label-input-text"
+                style="margin-top: auto; margin-bottom: auto;">Members:</label><br><br>
+            <button type="button" class=" btn btn-labeled btn-success" onclick="addMember()"
+                style="position: absolute; right: 0; top:-8px">
+                <span class="btn-label"><i class="fas fa-plus"></i></span>Add</button>
+        </div>
+
+        <!-- HERE THE GENERATOR -->
+        <div id="apply-member-generator-container"></div>
+
+        <label for="apply-group-task-picker" class="login-label-input-text">Task:</label>
+        <select id="apply-group-task-picker" class="selectpicker" name="task" data-width="100%">
+        </select><br><br>
+
+        <label for="apply-group-password" class="login-label-input-text">Password:</label>
+        <input class="login-input-text" type="password" id="apply-group-password" name="password" minlength="8"
+            maxlength="20"><br><br>
+
+        <label for="apply-group-password-repeat" class="login-label-input-text">Repeat the Password:</label>
+        <input class="login-input-text" type="password" id="apply-group-password-repeat" name="password-repeat"
+            minlength="8" maxlength="20"><br><br>
+
+        <div class="text-center">
+            <input type="submit" class="submit-button" value="Submit" style="margin-top: 10px;">
+        </div>
+    </form>
+</div>
+
+<div id="apply-member-generator"
+    style="background-color: rgba(0,0,0,0.2); padding: 20px; border-radius: 5px;  margin-bottom: 1rem; display: none;">
+    <div class="row">
+        <div class="col-6">
+            <label class="login-label-input-text">Name:</label>
+            <input class="login-input-text" style="width: 70%;" id="apply-member-name" name="member-name">
+        </div>
+        <div class="col-6">
+            <label class="login-label-input-text">Email:</label>
+            <input class="login-input-text" style="width: 70% !important;" type="email" id="apply-member-email"
+                name="member-email">
+        </div>
+    </div>
+</div>
+
+<script src="{{ url_for('static', filename= 'scripts/apply.js') }}"></script>
+
+{% endblock content %}

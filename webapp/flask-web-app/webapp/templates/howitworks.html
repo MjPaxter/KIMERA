@@ -1,0 +1,71 @@
+{% extends 'base.html' %}
+
+{% set active_page = "howitworks" %}
+
+{% block content %}
+<script src="https://unpkg.com/@lottiefiles/lottie-player@latest/dist/lottie-player.js"></script>
+
+<div class="container-fluid page-content ">
+    <!--Row-->
+    <div class="row how-it-works-left-card ">
+        <!--Column-->
+        <div class="col-md-6 ">
+            <h2 class="how-it-works-title">What is Information Retrieval?</h2>
+            <p class="how-it-works-description">
+                Information Retrieval is a research field that that deals with the process of obtaining resources which
+                are relevant to an information need. When you are saying
+                "Hey Google, can you tell me what's the weather like in Rome?" you are making use of Information
+                Retrieval systems in order to retrieve the information you need.
+            </p>
+        </div>
+        <!--Column-->
+        <div class="col-md-6">
+            <lottie-player src="https://assets3.lottiefiles.com/packages/lf20_l3j1mflq.json" background="transparent"
+                speed="1" class="how-it-works-lottie" loop autoplay>
+            </lottie-player>
+        </div>
+    </div>
+    <!--Row-->
+    <div class="row how-it-works-right-card">
+
+        <!--Column-->
+        <div class="col-md-6">
+            <lottie-player src="https://assets1.lottiefiles.com/packages/lf20_q77jpumk.json" background="transparent"
+                speed="1" class="how-it-works-lottie" loop autoplay>
+            </lottie-player>
+        </div>
+        <!--Column-->
+        <div class="col-md-6 ">
+            <h2 class="how-it-works-title">Quantum Annealing... the future?</h2>
+            <p class="how-it-works-description">
+                Quantum Annealing is a Quantum Computing paradigm that can be used to solve optimization problems such
+                as the Travelling Salesman. It can be very powerful since
+                it can be applied to solve NP-Hard problems that are infeasible to be solved by means of classical
+                hardware.
+            </p>
+        </div>
+
+    </div>
+    <!--Row-->
+    <div class="row how-it-works-left-card ">
+        <!--Column-->
+        <div class="col-md-6 ">
+            <h2 class="how-it-works-title">How does QuantumCLEF work?</h2>
+            <p class="how-it-works-description">
+                QuantumCLEF is an evaluation campaign consisting of several Shared-Tasks. You can participate with your
+                own research group for free in one of the task by registering
+                your group. You will propose your own solution and a paper reporting what you have done and achieved. At
+                the end, all the groups' result will be reported and if your
+                paper is well-written it will be published.
+            </p>
+        </div>
+        <!--Column-->
+        <div class="col-md-6">
+            <lottie-player src="https://assets4.lottiefiles.com/packages/lf20_lcr4kcr2.json" background="transparent"
+                speed="1" class="how-it-works-lottie" loop autoplay>
+            </lottie-player>
+        </div>
+    </div>
+
+</div>
+{% endblock %}

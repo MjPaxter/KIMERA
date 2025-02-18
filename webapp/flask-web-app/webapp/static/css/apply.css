@@ -1,0 +1,153 @@
+/***** TITLE **************************************************************************************/
+.apply-title {
+    color: white;
+    text-align: center;
+    padding: 10px;
+    font-size: 70px;
+    font-weight: bold;
+    text-shadow: 0px 0px 20px #1d4b5777;
+}
+
+/* On screens that are 1000px or less */
+@media screen and (max-width: 1000px) {
+    .apply-title {
+        font-size: 50px;
+    }
+}
+
+/* On screens that are 400px or less */
+@media screen and (max-width: 400px) {
+    .apply-title {
+        font-size: 30px;
+    }
+}
+
+/*************************************************************************************************/
+
+
+/***** LOGIN CONTAINER **************************************************************************************/
+.apply-container {
+    border-radius: 20px;
+    width: 50vw;
+    background-color: var(--white-opacity);
+    padding: 20px 50px;
+    box-shadow: var(--shadow-small);
+}
+
+/* On screens that are 1000px or less */
+@media screen and (max-width: 1000px) {
+    .apply-container {
+        width: 70vw;
+        padding: 20px 30px;
+    }
+}
+
+/* On screens that are 400px or less */
+@media screen and (max-width: 400px) {
+    .apply-container {
+        width: 80vw;
+        padding: 20px 20px;
+    }
+}
+
+/**************************************************************************************************/
+
+/***** INPUT TEXT **************************************************************************************/
+.apply-input-text {
+    padding-left: 10px;
+    padding-right: 10px;
+    width: 100%;
+    border-radius: 8px;
+    border: none;
+    box-shadow: var(--shadow-small);
+    height: 40px;
+    font-size: 18px;
+    transition: transform .3s, box-shadow .3s;
+}
+
+/* On screens that are 1000px or less */
+@media screen and (max-width: 1000px) {
+    .apply-input-text {
+        font-size: 16px;
+    }
+}
+
+/* On screens that are 400px or less */
+@media screen and (max-width: 400px) {
+    .apply-input-text {
+        font-size: 12px;
+    }
+}
+
+.apply-input-text:focus {
+    outline: none !important;
+    border: 2px solid var(--cyan);
+    box-shadow: 0 0 10px #719ECE;
+    transform: scale(1.05, 1.05);
+    -webkit-transform: scale(1.05, 1.05);
+    -moz-transform: scale(1.05, 1.05);
+    box-shadow: var(--shadow-big);
+}
+
+/**************************************************************************************************/
+
+
+/***** INPUT TEXT AREA **************************************************************************************/
+.apply-input-text-area {
+    padding: 10px;
+    width: 100%;
+    border-radius: 8px;
+    border: none;
+    font-size: 18px;
+    box-shadow: var(--shadow-small);
+    transition: transform .3s, box-shadow .3s;
+}
+
+/* On screens that are 1000px or less */
+@media screen and (max-width: 1000px) {
+    .apply-input-text-area {
+        font-size: 16px;
+    }
+}
+
+/* On screens that are 400px or less */
+@media screen and (max-width: 400px) {
+    .apply-input-text-area {
+        font-size: 12px;
+    }
+}
+
+.apply-input-text-area:focus {
+    outline: none !important;
+    border: 2px solid var(--cyan);
+    box-shadow: 0 0 10px #719ECE;
+    transform: scale(1.05, 1.05);
+    -webkit-transform: scale(1.05, 1.05);
+    -moz-transform: scale(1.05, 1.05);
+    box-shadow: var(--shadow-big);
+}
+
+/**************************************************************************************************/
+
+
+/***** LABEL INPUT TEXT **************************************************************************************/
+.apply-label-input-text {
+    font-size: 20px;
+    color: var(--black);
+}
+
+/* On screens that are 1000px or less */
+@media screen and (max-width: 1000px) {
+    .apply-label-input-text {
+        font-size: 18px;
+    }
+}
+
+/* On screens that are 400px or less */
+@media screen and (max-width: 400px) {
+    .apply-label-input-text {
+        font-size: 14px;
+    }
+}
+
+/**************************************************************************************************/

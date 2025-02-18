@@ -1,0 +1,60 @@
+{% extends 'admin_dashboardv2.html' %}
+
+{% block content%}
+<script src="https://unpkg.com/@lottiefiles/lottie-player@latest/dist/lottie-player.js"></script>
+
+<div class="d-flex flex-column" style="height: 100%;  width: 100%; ">
+    <div class="container-fluid row group-dashboard-header-bar">
+        <div class="typewriter">
+            <h1>{% block title %} Welcome admin! {% endblock %}</h1>
+        </div>
+    </div>
+
+    <div class="d-flex flex-column page-content-scrollable">
+        <p class="group-dashboard-home-text" style="margin: 20px 5vw;">This is your own Dashboard! Here you have several
+            sections where you can monitor groups and tasks :</p>
+        <ul class="group-dashboard-home-text " style="padding: 10px 0px;">
+            <li style="padding: 2px;  margin: 10px 10vw;">
+                <p style="text-decoration:none;">
+                    <i class="fa fa-home"></i>
+                    <span style="font-weight: bold;">Home</span>: you are here! As you can see, just a brief page
+                    explaining the structure of your dashboard.
+                    </a>
+            </li>
+            <li style="padding: 2px; margin: 10px 10vw;">
+                <p style="text-decoration:none;">
+                    <i class="fas fa-users"></i>
+                    <span style="font-weight: bold;">Groups</span>: here you can find the list of groups and edit their
+                    corresponding data.
+                    </a>
+            </li>
+            <!--<li style="padding: 2px;  margin: 10px 10vw;">
+                <p style="text-decoration:none;">
+                    <i class="fas fa-chart-pie"></i>
+                    <span style="font-weight: bold;">Statistics</span>: here you can find statistics about the tasks
+                    (e.g., your remaining QPU time, the submissions over time).
+                    </a>
+            </li>
+            <li style="padding: 2px;  margin: 10px 10vw;">
+                <p style="text-decoration:none;">
+                    <i class="fas fa-user-circle"></i>
+                    <span style="font-weight: bold;">Profile</span>: here you can find your own data.
+                    </a>
+            </li>-->
+            <li style="padding: 2px;  margin: 10px 10vw;">
+                <p style="text-decoration:none;">
+                    <i class="fas fa-sign-out-alt"></i>
+                    <span style="font-weight: bold;">Exit</span>: here you can go back to our main website (you will be
+                    still logged in with your profile).
+                    </a>
+            </li>
+        </ul>
+        <div>
+            <lottie-player src="{{ url_for('static', filename= 'images/welcome_dashboard.json') }}"
+                background="transparent" class="dashboard-homepage-lottie" speed="1" loop autoplay>
+            </lottie-player>
+        </div>
+    </div>
+
+</div>
+{% endblock %}

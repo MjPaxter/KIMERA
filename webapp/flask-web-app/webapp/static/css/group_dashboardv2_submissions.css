@@ -1,0 +1,123 @@
+/***** GROUP-DASHBOARD-SUBMISSIONS-HEADER-TEXT **************************************************************************************/
+.group-dashboard-submissions-header-text {
+    font-size: 20px;
+    text-align: center;
+    color: var(--black);
+}
+
+
+/* On screens that are 1000px or less */
+@media screen and (max-width: 1000px) {
+    .group-dashboard-submissions-header-text {
+        font-size: 17px;
+    }
+}
+
+/* On screens that are 500px or less */
+@media screen and (max-width: 670px) {
+    .group-dashboard-submissions-header-text {
+        font-size: 14px;
+    }
+}
+
+/*************************************************************************************************/
+
+
+/***** GROUP-DASHBOARD-SUBMISSIONS-ID-TEXT **************************************************************************************/
+.group-dashboard-submissions-id-text {
+    font-size: 20px;
+    text-align: center;
+    margin: auto;
+    color: var(--black);
+}
+
+
+/* On screens that are 1000px or less */
+@media screen and (max-width: 1000px) {
+    .group-dashboard-submissions-id-text {
+        font-size: 17px;
+    }
+}
+
+/* On screens that are 500px or less */
+@media screen and (max-width: 670px) {
+    .group-dashboard-submissions-id-text {
+        font-size: 14px;
+    }
+}
+
+/*************************************************************************************************/
+
+/***** GROUP-DASHBOARD-SUBMISSIONS-DATE-TEXT **************************************************************************************/
+.group-dashboard-submissions-date-text {
+    font-size: 20px;
+    text-align: center;
+    margin: auto;
+    color: var(--black);
+}
+
+
+/* On screens that are 1000px or less */
+@media screen and (max-width: 1000px) {
+    .group-dashboard-submissions-date-text {
+        font-size: 17px;
+    }
+}
+
+/* On screens that are 500px or less */
+@media screen and (max-width: 670px) {
+    .group-dashboard-submissions-date-text {
+        font-size: 14px;
+    }
+}
+
+/*************************************************************************************************/
+
+/***** GROUP-DASHBOARD-SUBMISSIONS-TIME-TEXT **************************************************************************************/
+.group-dashboard-submissions-time-number-text {
+    font-size: 22px;
+    text-align: center;
+    margin: auto;
+    color: rgb(43, 134, 224);
+}
+
+.group-dashboard-submissions-time-unit-text {
+    font-size: 15px;
+    text-align: center;
+    margin: auto;
+    color: rgb(43, 134, 224);
+    margin-left: -2px;
+}
+
+
+/* On screens that are 1000px or less */
+@media screen and (max-width: 1000px) {
+    .group-dashboard-submissions-time-number-text {
+        font-size: 17px;
+        text-align: center;
+        margin: auto;
+    }
+
+    .group-dashboard-submissions-time-unit-text {
+        font-size: 13px;
+        text-align: center;
+        margin: auto;
+    }
+}
+
+/* On screens that are 500px or less */
+@media screen and (max-width: 670px) {
+    .group-dashboard-submissions-time-number-text {
+        font-size: 15px;
+        text-align: center;
+        margin: auto;
+    }
+
+    .group-dashboard-submissions-time-unit-text {
+        font-size: 12px;
+        text-align: center;
+        margin: auto;
+    }
+}
+
+/*************************************************************************************************/

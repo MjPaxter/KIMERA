@@ -1,0 +1,45 @@
+{% set active_page = "admindashboard" %}
+
+{% extends 'base.html' %}
+
+{% block content %}
+<h1>{% block title %} Admin Dashboard {% endblock %}</h1>
+<div class="container-fluid" style="width:100%; ">
+    <div class="row">
+        <div class="col" style="padding: 50px; display: flex;">
+            <div class="container-fluid admin-dashboard-button" onclick="goToGroups()">
+                <h2 class="text-title-dashboard"> Manage groups</h2>
+                <p class="text-description-dashboard">
+                    Here you can modify data about the groups.
+                </p>
+            </div>
+        </div>
+
+        <div class="col" style="padding: 50px; display: flex;">
+            <div class="container-fluid admin-dashboard-button">
+                <h2 class="text-title-dashboard"> Statistics</h2>
+                <p class="text-description-dashboard">
+                    Here you can see some general statistics.
+                </p>
+            </div>
+        </div>
+        <div class="col" style="padding: 50px; display: flex;">
+            <div class="container-fluid admin-dashboard-button">
+                <h2 class="text-title-dashboard"> Manage Tasks</h2>
+                <p class="text-description-dashboard">
+                    Here you can modify data about the Tasks and add new Tasks.
+                </p>
+            </div>
+        </div>
+    </div>
+</div>
+
+<script>
+    function goToGroups() {
+        window.location.href = '/admin/groups';
+    }
+    function goToTasks() {
+        window.location.href = '/admin-groups';
+    }
+</script>
+{% endblock %}

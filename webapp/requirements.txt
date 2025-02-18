@@ -1,0 +1,9 @@
+psycopg2-binary
+Flask
+Flask-SQLAlchemy
+Flask-Session
+Flask-WTF
+python-dateutil
+passlib
+email-validator
+requests

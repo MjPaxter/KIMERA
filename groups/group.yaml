@@ -1,0 +1,104 @@
+kind: StorageClass
+apiVersion: storage.k8s.io/v1
+metadata:
+  name: groupname-hostpath # The name of this storage class
+provisioner: microk8s.io/hostpath
+reclaimPolicy: Retain
+parameters:
+  pvDir: ../storages/groups/groupname # The path to the folder containing the workspace in the host machine
+volumeBindingMode: WaitForFirstConsumer
+
+---
+
+apiVersion: v1
+kind: PersistentVolumeClaim
+metadata:
+  name: groupname-pvc
+spec:
+  storageClassName: groupname-hostpath # It must refer to the storage class name above
+  accessModes: [ReadWriteOnce]
+  resources:
+    requests:
+      storage: 10Gi # This needs to be adjusted based on the size of the group workspace needed
+
+---
+
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: groupname-deployment # --------------CHANGE---------------------
+  labels:
+    app: groupname # --------------CHANGE---------------------
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: groupname # --------------CHANGE---------------------
+  template:
+    metadata:
+      labels:
+        app: groupname # --------------CHANGE---------------------
+    spec:
+      volumes:
+        - name: pvc-groupname-develop # --------------CHANGE---------------------
+          persistentVolumeClaim:
+            claimName: groupname-pvc # --------------CHANGE---------------------
+
+        - name: pvc-datasets
+          persistentVolumeClaim:
+            claimName: datasets-pvc 
+            readOnly: true
+            
+      containers:
+        - name: groupname # --------------CHANGE---------------------
+          image: workspace
+          
+          resources: # Managing the resources
+            requests:
+              memory: 500Mi # --------------TODO: DECIDE SIZE---------------------
+              cpu: 500m # --------------TODO: DECIDE SIZE---------------------
+            limits:
+              memory: 12Gi # --------------TODO: DECIDE SIZE---------------------
+              cpu: 2 # --------------TODO: DECIDE SIZE---------------------
+          
+          imagePullPolicy: Never # This must be set to Never since it is a customized image
+          
+          ports: # The port exposed outside the container
+            - containerPort: 8443
+            - containerPort: 18000
+          
+          volumeMounts: 
+          # The persistent storage to develop and save stuff
+            - name: pvc-groupname-develop # --------------CHANGE---------------------
+              mountPath: /config
+
+          # The persistent storage to access datasets
+            - name: pvc-datasets
+              mountPath: /config/workspace/datasets
+              
+          env:
+            - name: PASSWORD # The password used to login
+              value: grouppassword # --------------CHANGE---------------------
+
+            - name: DWAVE_API_ENDPOINT # The dispatcher address
+              value: http://dispatcher-service:5000/
+
+            - name: DWAVE_API_TOKEN # The group token id
+              value: "grouptoken" # --------------CHANGE---------------------
+
+            - name: DWAVE_INSPECTOR_JUPYTER_SERVER_PROXY_EXTERNAL_URL
+              value: http://qclef-infrastructure.dei.unipd.it/workspace/groupname/ # --------------CHANGE TODO: USE CORRECT DOMAIN---------------------
+              
+---
+
+apiVersion: v1
+kind: Service
+metadata:
+  name: groupname-service # --------------CHANGE---------------------
+spec:
+  selector:
+    app: groupname # --------------CHANGE---------------------
+  ports:
+    - protocol: TCP
+      port: 8443
+      targetPort: 8443

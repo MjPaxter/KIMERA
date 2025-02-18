@@ -1,0 +1,10 @@
+# This file is only useful to build automatic routes! Do not touch it!
+
+      # Group groupname workspace
+      - path: /workspace/groupname/(.*) # --------------CHANGE---------------------
+        pathType: Prefix
+        backend:
+          service:
+            name: groupname-service # --------------CHANGE---------------------
+            port:
+              number: 8443

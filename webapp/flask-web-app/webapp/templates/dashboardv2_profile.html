@@ -1,0 +1,54 @@
+{% extends 'dashboardv2.html' %}
+
+{% block content%}
+<script src="https://unpkg.com/@lottiefiles/lottie-player@latest/dist/lottie-player.js"></script>
+
+<div class="d-flex flex-column" style="height: 100%;  width: 100%; ">
+    <div class="container-fluid row group-dashboard-header-bar">
+        <h1>{% block title %} Profile {% endblock %}</h1>
+    </div>
+
+    <div class="d-flex flex-column page-content-scrollable" style="height: 100%; width: 100%; ">
+        <ul style=" padding: 10px 0px; color: var(--black);">
+            <li style="padding: 2px;  margin: 10px 10vw;">
+                <p style="text-decoration:none;">
+                    <i class="fas fa-user-circle"></i>
+                    <span style="font-weight: bold;">Group Name</span>: <span id="profile-group-name"></span>
+                </p>
+            </li>
+            <li style="padding: 2px;  margin: 10px 10vw;">
+                <p style="text-decoration:none;">
+                    <i class="far fa-envelope-open"></i>
+                    <span style="font-weight: bold;">Reference email</span>: <span id="profile-members"></span>
+                </p>
+            </li>
+            <!--<li style="padding: 2px; margin: 10px 10vw;">
+                <p style="text-decoration:none;">
+                    <i class="far fa-comment-alt"></i>
+                    <span style="font-weight: bold;">Description</span>: <span id="profile-description"></span>
+                </p>
+            </li>-->
+            <li style="padding: 2px; margin: 10px 10vw;">
+                <p style="text-decoration:none;">
+                    <i class="far fa-file-alt"></i>
+                    <span style="font-weight: bold;">Task</span>: <span id="profile-task-name"></span>
+                </p>
+            </li>
+            <li style="padding: 2px;  margin: 10px 10vw;">
+                <p style="text-decoration:none;">
+                    <i class="fas fa-lock"></i>
+                    <span style="font-weight: bold;">Password</span>: <span id="profile-password"></span>
+                </p>
+            </li>
+            <div>
+                <lottie-player src="{{ url_for('static', filename= 'images/profile.json') }}" background="transparent"
+                    class="dashboard-homepage-lottie" speed="1" loop autoplay>
+                </lottie-player>
+            </div>
+        </ul>
+    </div>
+</div>
+
+<script src="{{ url_for('static', filename= 'scripts/group_profile.js') }}"></script>
+
+{% endblock %}

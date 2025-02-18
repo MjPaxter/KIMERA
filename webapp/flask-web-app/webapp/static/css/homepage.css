@@ -1,0 +1,80 @@
+/***** CONTAINER MATCH HEIGHT **************************************************************************************/
+.homepage-container-match-height {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: calc(100vh - 200px);
+}
+
+.homepage-container-match-height .row {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+/**************************************************************************************************/
+
+
+/***** TITLE **************************************************************************************/
+.homepage-title {
+    color: white;
+    text-align: center;
+    padding: 10px;
+    font-size: 70px;
+    font-weight: bold;
+    text-shadow: 0px 0px 20px #1d4b5777;
+}
+
+/* On screens that are 1090 or less */
+@media screen and (max-width: 1090px) {
+    .homepage-title {
+        font-size: 50px;
+    }
+}
+
+/* On screens that are 600px or less */
+@media screen and (max-width: 400px) {
+    .homepage-title {
+        font-size: 30px;
+    }
+}
+
+/**************************************************************************************************/
+
+
+/***** DESCRIPTION **************************************************************************************/
+.homepage-description {
+    font-size: 20px;
+    color: var(--white);
+    text-align: center;
+    text-shadow: 0px 0px 20px #1d4b5777;
+    /*margin: 2% 10%; */
+}
+
+/* On screens that are 1200px or less */
+@media screen and (max-width: 1090px) {
+    .homepage-description {
+        font-size: 16px;
+    }
+}
+
+/* On screens that are 600px or less */
+@media screen and (max-width: 400px) {
+    .homepage-description {
+        font-size: 14px;
+    }
+}
+
+/**************************************************************************************************/
+
+
+/***** LOTTIE **************************************************************************************/
+.homepage-lottie {
+    width: 40vw;
+    max-width: 500px;
+    min-width: 250px;
+    margin-left: auto;
+    margin-right: auto;
+}
+
+/**************************************************************************************************/

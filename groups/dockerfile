@@ -1,0 +1,20 @@
+FROM linuxserver/code-server:4.11.0
+
+ARG rootpsw
+
+# Install only essential packages and clean up afterwards
+RUN apt-get update && \
+    apt-get install -y --no-install-recommends \
+    python3-pip \
+    && pip install --no-cache-dir dwave-system==1.21.0 \
+    dwave-inspector==0.4.4 \
+    dwave-inspectorapp --extra-index=https://pypi.dwavesys.com/simple \
+    && apt-get purge -y --auto-remove \
+    && apt-get clean \
+    && rm -rf /var/lib/apt/lists/* /tmp/* /var/tmp/*
+
+# Change the root password with the passed argument
+RUN echo "root:$rootpsw" | chpasswd
+
+# Exposing this port to grant access to the dwave quantum inspector app
+EXPOSE 18000

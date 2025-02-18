@@ -1,0 +1,143 @@
+/***** TITLE **************************************************************************************/
+.login-title {
+    color: white;
+    text-align: center;
+    padding: 10px;
+    font-size: 70px;
+    font-weight: bold;
+    text-shadow: 0px 0px 20px #1d4b5777;
+}
+
+@media screen and (max-width: 1000px) {
+    .login-title {
+        font-size: 60px;
+    }
+}
+
+@media screen and (max-width: 400px) {
+    .login-title {
+        font-size: 40px;
+    }
+}
+
+/*************************************************************************************************/
+
+
+/***** LOGIN CONTAINER **************************************************************************************/
+.login-container {
+    border-radius: 20px;
+    width: 50vw;
+    /*min-width: 500px;*/
+    background-color: var(--white-opacity);
+    padding: 20px 50px;
+    box-shadow: var(--shadow-small);
+}
+
+@media screen and (max-width: 1000px) {
+    .login-container {
+        width: 70vw;
+        padding: 20px 30px;
+    }
+}
+
+@media screen and (max-width: 400px) {
+    .login-container {
+        width: 80vw;
+        padding: 20px 20px;
+    }
+}
+
+/**************************************************************************************************/
+
+/***** INPUT TEXT **************************************************************************************/
+.login-input-text {
+    padding-left: 10px;
+    padding-right: 10px;
+    width: 100%;
+    border-radius: 8px;
+    border: none;
+    box-shadow: var(--shadow-small);
+    height: 40px;
+    font-size: 18px;
+    transition: transform .3s, box-shadow .3s;
+}
+
+@media screen and (max-width: 1000px) {
+    .login-input-text {
+        font-size: 16px;
+    }
+}
+
+@media screen and (max-width: 400px) {
+    .login-input-text {
+        font-size: 12px;
+    }
+}
+
+.login-input-text:focus {
+    outline: none !important;
+    border: 2px solid var(--cyan);
+    box-shadow: 0 0 10px #719ECE;
+    transform: scale(1.05, 1.05);
+    -webkit-transform: scale(1.05, 1.05);
+    -moz-transform: scale(1.05, 1.05);
+    box-shadow: var(--shadow-big);
+}
+
+/**************************************************************************************************/
+
+
+/***** LABEL INPUT TEXT **************************************************************************************/
+.login-label-input-text {
+    font-size: 20px;
+    color: var(--black);
+}
+
+@media screen and (max-width: 1000px) {
+    .login-label-input-text {
+        font-size: 18px;
+    }
+}
+
+@media screen and (max-width: 400px) {
+    .login-label-input-text {
+        font-size: 14px;
+    }
+}
+
+/**************************************************************************************************/
+
+
+/***** CONFIRM ACCOUNT TEXT **************************************************************************************/
+.login-confirm-account-text {
+    font-size: 15px;
+    color: var(--black);
+    margin-top: 10px;
+
+}
+
+@media screen and (max-width: 1000px) {
+    .login-confirm-account-text {
+        font-size: 13px;
+    }
+}
+
+@media screen and (max-width: 400px) {
+    .login-confirm-account-text {
+        font-size: 12px;
+    }
+}
+
+/**************************************************************************************************/
+
+
+/***** LOTTIE PLAYER ********************************************************************************/
+.login-lottie {
+    max-width: 350px;
+    min-width: 180px;
+    margin-left: auto;
+    margin-right: auto;
+    margin-bottom: -50px;
+}
+
+/****************************************************************************************************/

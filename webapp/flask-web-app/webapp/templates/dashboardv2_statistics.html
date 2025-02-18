@@ -1,0 +1,200 @@
+{% extends 'dashboardv2.html' %}
+
+{% block content%}
+<script src="{{ url_for('static', filename= 'scripts/submission_chart.js') }}"></script>
+
+<script src="https://unpkg.com/@lottiefiles/lottie-player@latest/dist/lottie-player.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/moment.js/2.29.1/moment.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/chart.js@2.9.4/dist/Chart.min.js"></script>
+
+<div class="d-flex flex-column" style="height: 100%;  width: 100%; ">
+	<div class="container-fluid row group-dashboard-header-bar">
+		<h1>{% block title %} Statistics {% endblock %}</h1>
+	</div>
+
+
+
+	<div class="d-flex flex-column page-content-scrollable " style="height: 100%;  width: 100%; ">
+
+		<div class="row container-bottom-grey" style="margin: 0;  margin-top: 15px;">
+			<div class="container">
+				<select id="task-picker" class="selectpicker" name="task" data-width="100%">
+				</select>
+			</div>
+		</div>
+
+		<div class="row" style="margin-top:15px; margin-right: 0px; margin-left: 0px;">
+			<div class="col-xl-8 col-sm-12 container-fluid group-dashboard-statistics-chart-box container-bottom-grey">
+				<div class="flex-column d-flex"
+					style="height: 100%; background-color: white; border-radius: 10px; box-shadow: 0px 0px 5px rgba(57, 62, 70, 0.5);">
+					<div class="row group-dashboard-statistics-title-box" style="padding: 10px 25px;">
+						QPU usage over time
+					</div>
+					<div class="row" style="width: 98%; padding: 10px 20px; flex:1; ">
+						<canvas id="submissionChart"></canvas>
+					</div>
+				</div>
+			</div>
+			<div class="offset-xl-1"></div>
+			<div
+				class="col-xl-3 col-sm-12 container-fluid flex-column d-flex justify-content-between container-bottom-grey">
+				<div class=" container  group-dashboard-statistics-data-box">
+					<div class="flex-column d-flex" style="height: 100%;">
+						<div class="row group-dashboard-statistics-title-box">
+							Submissions
+						</div>
+						<div class="row" style=" flex:1;margin-bottom: 10px; ">
+							<div class="col-8 d-flex flex-column justify-content-center ">
+								<p style="margin: 0px;">
+									<span class="group-dashboard-statistics-number-box" id="text-submission-number"
+										style="margin-left: -5px; color: rgb(43, 134, 224);">0</span>
+								</p>
+							</div>
+							<div class="col-4 d-flex flex-column justify-content-center" style="padding: 0px;">
+								<div class="container align-middle "
+									style="background-color: rgb(43, 134, 224); width: 50px; height: 50px; display: table; border-radius: 10px; box-shadow: 0px 0px 5px rgba(57, 62, 70, 0.5);">
+									<i class="fas fa-paper-plane align-middle"
+										style="display: table-cell; font-size: 1.5em; color: white;"></i>
+								</div>
+							</div>
+						</div>
+					</div>
+				</div>
+
+				<div class="container group-dashboard-statistics-data-box">
+					<div class="flex-column d-flex" style="height: 100%;">
+						<div class="row group-dashboard-statistics-title-box">
+							QPU Time for the Task
+						</div>
+						<div class="row" style=" flex:1;margin-bottom: 10px; ">
+							<div class="col-8 d-flex flex-column justify-content-center" style="padding-right: 2px;">
+								<p style="margin: 0px;">
+									<span class="group-dashboard-statistics-number-box" id="text-qpu-task-time-s"
+										style="margin-left: -5px; color: rgb(17, 197, 158); ">0</span>
+									<span class="group-dashboard-statistics-units-box"
+										style="  margin-left: -2px;  color: rgb(17, 197, 158);">s</span>
+									<span class="group-dashboard-statistics-number-box" id="text-qpu-task-time-ms"
+										style="color: rgb(17, 197, 158);">0</span>
+									<span class="group-dashboard-statistics-units-box"
+										style="  margin-left: -2px;  color: rgb(17, 197, 158);">ms</span>
+									<span class="group-dashboard-statistics-number-box" id="text-qpu-task-time-us"
+										style="color: rgb(17, 197, 158);">0</span>
+									<span class="group-dashboard-statistics-units-box"
+										style="  margin-left: -2px;  color: rgb(17, 197, 158);">us</span>
+								</p>
+							</div>
+							<div class="col-4 d-flex flex-column justify-content-center" style="padding: 0px;">
+								<div class="container align-middle"
+									style="background-color: rgb(17, 197, 158); display: table; border-radius: 10px; height: 50px; width: 50px; box-shadow: 0px 0px 5px rgba(57, 62, 70, 0.5);">
+									<i class="fas fa-hourglass-start align-middle"
+										style="display: table-cell; font-size: 1.5em; color: white;"></i>
+								</div>
+							</div>
+						</div>
+						<div class="row"></div>
+					</div>
+				</div>
+
+				<div class="container group-dashboard-statistics-data-box">
+					<div class="flex-column d-flex" style="height: 100%;">
+						<div class="row group-dashboard-statistics-title-box">
+							QPU Time used this month
+						</div>
+						<div class="row" style=" flex:1; margin-bottom: 10px;">
+							<div class="col-8 d-flex flex-column justify-content-center">
+								<p style="margin: 0px;">
+									<span class="group-dashboard-statistics-number-box" id="text-qpu-used-time-s"
+										style="  margin-left: -5px; color: rgb(224, 158, 43);">0</span>
+									<span class="group-dashboard-statistics-units-box"
+										style=" margin-left: -2px;  color: rgb(224, 158, 43);">s</span>
+									<span class="group-dashboard-statistics-number-box" id="text-qpu-used-time-ms"
+										style="color: rgb(224, 158, 43);">0</span>
+									<span class="group-dashboard-statistics-units-box"
+										style="margin-left: -2px;  color: rgb(224, 158, 43);">ms</span>
+									<span class="group-dashboard-statistics-number-box" id="text-qpu-used-time-us"
+										style="color: rgb(224, 158, 43);">0</span>
+									<span class="group-dashboard-statistics-units-box"
+										style="margin-left: -2px;  color: rgb(224, 158, 43);">us</span>
+								</p>
+							</div>
+							<div class="col-4 d-flex flex-column justify-content-center" style="padding: 0px;">
+								<div class="container align-middle"
+									style="background-color: rgb(224, 158, 43); display: table; border-radius: 10px; height: 50px; width: 50px; box-shadow: 0px 0px 5px rgba(57, 62, 70, 0.5);">
+									<i class="fas fa-hourglass-half align-middle"
+										style="display: table-cell; font-size: 1.5em; color: white;"></i>
+								</div>
+							</div>
+						</div>
+					</div>
+				</div>
+			</div>
+		</div>
+
+		<div class="container-fluid container-bottom-grey"
+			style="padding:0px 20px 25px 20px; margin-top: 20px; margin-bottom: 20px;  ">
+			<div class="progress-outer" style="width: 100%;">
+				<div class="progress">
+					<div id="bar-percentage-submissions"
+						class="progress-bar progress-bar-info progress-bar-striped active "
+						style="width:0%; box-shadow:-1px 5px 5px rgba(91, 192, 222, 0.7);"></div>
+					<div id="bar-percentage-submissions-text" class="progress-value">10%</div>
+				</div>
+			</div>
+		</div>
+
+		<div class="row container-bottom-grey"
+			style="margin-top:15px; margin-right: 0px; margin-left: 0px; max-height: 50vh;  ">
+			<div id="submissions-list" class="container-fluid"
+				style=" width: 100%; height: 45vh; background-color: white; margin: 0; border-radius: 10px; box-shadow: 0px 0px 5px rgba(57, 62, 70, 0.5); overflow-y: auto;">
+				<div id="listheader" class="row "
+					style="min-height:70px; margin:0px; background-color: transparent; padding: 30px 0px; border-top-left-radius: 10px;border-top-right-radius: 10px;  width: 100%; ">
+					<div class="col-4 group-dashboard-submissions-header-text" style="margin: auto;">
+						<i class="fas fa-at" style="margin: 0px 5px 0px 0px"></i>ID
+					</div>
+					<div class="col-3 group-dashboard-submissions-header-text" style="margin: auto;">
+						<i class="far fa-calendar-alt" style="margin: 0px 5px 0px 0px"></i>Submitted At
+					</div>
+					<div class="col-3 group-dashboard-submissions-header-text" style="margin: auto;">
+						<i class="far fa-hourglass" style="margin: 0px 5px 0px 0px"></i>SA Annealing Time/QPU Access Time
+					</div>
+					<div class="col-2 group-dashboard-submissions-header-text" style="margin: auto;">
+						<i class="far fa-hourglass" style="margin: 0px 5px 0px 0px"></i>Method
+					</div>
+				</div>
+				<!--box-shadow: 0px 2px 6px rgba(57, 62, 70, 0.5);-->
+				<div id="list-item-generator" class="container-fluid overflow-auto"
+					style="min-height:70px; width:100%; background-color:white; border-bottom-right-radius: 10px; border-bottom-left-radius: 10px; padding: 0px; display: none; ">
+					<div class="container" style="width: 40%;height: 3px; background-color: grey; border-radius: 2px;">
+					</div>
+					<div id="listitem" class="row"
+						style="height:70px;  margin:0px;  border-radius: 10px; position:relative;  ">
+						<div class="col-4 item-submission-id  group-dashboard-submissions-id-text align-items-center"
+							style="margin: auto;">
+							ID
+						</div>
+						<div class="col-3 item-submission-at  group-dashboard-submissions-id-text align-items-center"
+							style="margin: auto;">
+							Submitted At
+						</div>
+						<div class="col-3  align-items-center" style="margin: auto;">
+							<span class="item-submission-time-s group-dashboard-submissions-time-number-text">0</span>
+							<span class="group-dashboard-submissions-time-unit-text">s</span>
+							<span class="item-submission-time-ms group-dashboard-submissions-time-number-text">0</span>
+							<span class="group-dashboard-submissions-time-unit-text">ms</span>
+							<span class="item-submission-time-us group-dashboard-submissions-time-number-text">0</span>
+							<span class="group-dashboard-submissions-time-unit-text">us</span>
+						</div>
+						<div class="col-2 item-submission-sampler group-dashboard-submissions-id-text align-items-center"
+							style="margin: auto;">
+							Sampler
+						</div>
+					</div>
+				</div>
+			</div>
+		</div>
+	</div>
+</div>
+
+<script src="{{ url_for('static', filename= 'scripts/group_statistics.js') }}"></script>
+
+{% endblock %}

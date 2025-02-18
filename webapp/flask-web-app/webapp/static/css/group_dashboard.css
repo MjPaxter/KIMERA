@@ -1,0 +1,159 @@
+/***** TITLE **************************************************************************************/
+.group-dashboard-title {
+    color: white;
+    text-align: center;
+    padding: 10px;
+    font-size: 70px;
+    font-weight: bold;
+    text-shadow: 0px 0px 20px #1d4b5777;
+}
+
+/* On screens that are 1000px or less */
+@media screen and (max-width: 1000px) {
+    .group-dashboard-title {
+        font-size: 60px;
+    }
+}
+
+/* On screens that are 400px or less */
+@media screen and (max-width: 400px) {
+    .group-dashboard-title {
+        font-size: 40px;
+    }
+}
+
+/*************************************************************************************************/
+
+/***** TITLE IN BOX **************************************************************************************/
+.group-dashboard-title-box {
+    text-shadow: 0px 0px 20px #1d4b5777;
+    text-align: center;
+    font-weight: bold;
+    font-size: 40px;
+}
+
+/* On screens that are 1000px or less */
+@media screen and (max-width: 1000px) {
+    .group-dashboard-title-box {
+        font-size: 35px;
+    }
+}
+
+/* On screens that are 400px or less */
+@media screen and (max-width: 400px) {
+    .group-dashboard-title-box {
+        font-size: 25px;
+    }
+}
+
+/* On screens that are 300px or less */
+@media screen and (max-width: 300px) {
+    .group-dashboard-title-box {
+        font-size: 18px;
+    }
+}
+
+/*************************************************************************************************/
+
+
+/***** DESCRIPTION IN BOX **************************************************************************************/
+.group-dashboard-description-box {
+    text-align: center;
+    font-size: 20px;
+    margin-top: 20px;
+    margin-bottom: 20px;
+}
+
+/* On screens that are 1000px or less */
+@media screen and (max-width: 1000px) {
+    .group-dashboard-description-box {
+        font-size: 17px;
+    }
+}
+
+/* On screens that are 400px or less */
+@media screen and (max-width: 400px) {
+    .group-dashboard-description-box {
+        font-size: 14px;
+    }
+}
+
+/*************************************************************************************************/
+
+
+/***** NUMBER BOX **************************************************************************************/
+.group-dashboard-number-box {
+    justify-content: space-between;
+    display: flex;
+    align-items: center;
+    box-shadow: var(--shadow-small);
+    border-radius: 20px;
+    margin-top: 40px;
+    padding-left: 20px;
+    padding-right: 20px;
+    background-color: #3c455777;
+}
+
+/* On screens that are 400px or less */
+@media screen and (max-width: 400px) {
+    .group-dashboard-number-box {
+        padding-left: 10px;
+        padding-right: 10px;
+    }
+}
+
+/*************************************************************************************************/
+
+
+/***** DESCRIPTION OF NUMBERS IN BOX **************************************************************************************/
+.group-dashboard-numbers-description {
+    text-align: center;
+    font-weight: bold;
+    font-size: 25px;
+    margin-top: 10px;
+    margin-bottom: 10px;
+}
+
+/* On screens that are 1000px or less */
+@media screen and (max-width: 1000px) {
+    .group-dashboard-numbers-description {
+        font-size: 23px;
+    }
+}
+
+/* On screens that are 400px or less */
+@media screen and (max-width: 400px) {
+    .group-dashboard-numbers-description {
+        font-size: 15px;
+    }
+}
+
+/*************************************************************************************************/
+
+
+/***** NUMBERS IN BOX **************************************************************************************/
+.group-dashboard-numbers {
+    text-align: center;
+    font-weight: bold;
+    color: rgb(255, 145, 0);
+    font-size: 35px;
+    margin-top: 10px;
+    margin-bottom: 10px;
+}
+
+/* On screens that are 1000px or less */
+@media screen and (max-width: 1000px) {
+    .group-dashboard-numbers {
+        font-size: 27px;
+    }
+}
+
+/* On screens that are 400px or less */
+@media screen and (max-width: 400px) {
+    .group-dashboard-numbers {
+        font-size: 16px;
+        margin-top: 0px;
+    }
+}
+
+/*************************************************************************************************/

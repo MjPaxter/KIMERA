@@ -1,0 +1,9 @@
+apiVersion: v1
+kind: ConfigMap
+metadata:
+  name: cluster-configmap
+data:
+  dispatcher_url: dispatcher-service
+  database_url: postgresdb-service
+  webapp_url: webapp-service
+  inspector_url: inspector-service

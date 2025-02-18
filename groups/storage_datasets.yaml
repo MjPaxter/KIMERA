@@ -1,0 +1,23 @@
+kind: StorageClass
+apiVersion: storage.k8s.io/v1
+metadata:
+  name: datasets-hostpath # The name of this storage class
+provisioner: microk8s.io/hostpath
+reclaimPolicy: Retain
+parameters:
+  pvDir: /home/qclef/infrastructure/storages/datasets # The ABSOLUTE path to the folder containing the datasets in the host machine
+volumeBindingMode: WaitForFirstConsumer
+
+---
+
+apiVersion: v1
+kind: PersistentVolumeClaim
+metadata:
+  name: datasets-pvc
+spec:
+  storageClassName: datasets-hostpath # It must refer to the storage class name above
+  accessModes: [ReadOnlyMany]
+  resources:
+    requests:
+      storage: 10Gi # This needs to be adjusted based on the size of the datasets
+

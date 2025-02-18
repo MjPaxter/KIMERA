@@ -1,0 +1,92 @@
+kind: StorageClass
+apiVersion: storage.k8s.io/v1
+metadata:
+  name: postgresdb-hostpath # The name of this storage class
+provisioner: microk8s.io/hostpath
+reclaimPolicy: Delete
+parameters:
+  pvDir: /home/qclef/infrastructure/storages/database # The path to the folder containing the database in the host machine
+volumeBindingMode: WaitForFirstConsumer
+
+---
+
+apiVersion: v1
+kind: PersistentVolumeClaim
+metadata:
+  name: postgresdb-pvc
+spec:
+  storageClassName: postgresdb-hostpath # It must refer to the storage class name above
+  accessModes: [ReadWriteOnce]
+  resources:
+    requests:
+      storage: 0.5Gi # This needs to be adjusted based on the size of the database (maybe 10 gb is more than enough)
+
+---
+
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: database-deployment
+  labels:
+    app: postgresdb
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: postgresdb
+  template:
+    metadata:
+      labels:
+        app: postgresdb
+    spec:
+      containers:
+      - name: postgresdb
+        image: postgres
+        ports:
+        - containerPort: 5432 # The postgres' associated port
+
+        env:
+        # The root password
+        - name: POSTGRES_PASSWORD
+          valueFrom:
+            secretKeyRef:
+              name: cluster-secret
+              key: postgres-root-password
+
+        # The root username
+        - name: POSTGRES_USER
+          valueFrom: 
+            secretKeyRef:
+              name: cluster-secret
+              key: postgres-root-username
+
+        # The database name
+        - name: POSTGRES_DB
+          valueFrom:
+            secretKeyRef:
+              name: cluster-secret
+              key: postgres-database-name
+        
+        volumeMounts:
+          - name: postgresdb-storage
+            mountPath: /var/lib/postgresql/data # This is the folder written by postgresql
+
+      volumes:
+        - name: postgresdb-storage
+          persistentVolumeClaim:
+            claimName: postgresdb-pvc
+  
+---
+
+apiVersion: v1
+kind: Service
+metadata:
+  name: postgresdb-service
+spec:
+  selector:
+    # This matches the pod label
+    app: postgresdb
+  ports:
+    - protocol: TCP
+      port: 5432
+      targetPort: 5432

@@ -1,0 +1,204 @@
+<!doctype html>
+<html lang="en">
+
+<head>
+	<!-- Required meta tags -->
+	<meta charset="utf-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+
+	<!-- Popper.js and Tooltip.js -->
+    <script src="{{url_for('static',filename='libraries/popper.js/popper.min.js')}}"></script>
+    <script src="{{url_for('static',filename='libraries/tooltip.js/tooltip.min.js')}}"></script>
+
+    <!-- JQuery -->
+    <script src="{{url_for('static',filename='libraries/jquery/jquery.min.js')}}"></script>
+    <script src="{{url_for('static',filename='libraries/jquery-ui.min.js')}}"></script>
+
+    <!-- JQuery-Confirm -->
+    <script src="{{url_for('static',filename='libraries/jquery-confirm/jquery-confirm.min.js')}}"></script>
+    <link rel="stylesheet" href="{{url_for('static',filename='libraries/jquery-confirm/jquery-confirm.min.css')}}">
+
+    <!-- JQuery-Contextmenu -->
+    <script src="{{url_for('static',filename='libraries/jquery-contextmenu/jquery.contextMenu.min.js')}}"></script>
+    <link rel="stylesheet" href="{{url_for('static',filename='libraries/jquery-contextmenu/jquery.contextMenu.min.css')}}">
+
+    <!-- Bootstrap CSS and JS -->
+    <link rel="stylesheet" href="{{url_for('static',filename='libraries/bootstrap-4.4.1-dist/css/bootstrap.min.css')}}">
+    <script src="{{url_for('static',filename='libraries/bootstrap-4.4.1-dist/js/bootstrap.bundle.min.js')}}"></script>
+
+    <!-- Bootstrap select -->
+    <link rel="stylesheet"
+        href="{{url_for('static',filename='libraries/bootstrap-select-1.13.14/dist/css/bootstrap-select.min.css')}}">
+    <script
+        src="{{url_for('static',filename='libraries/bootstrap-select-1.13.14/dist/js/bootstrap-select.min.js')}}"></script>
+
+    <!-- Fontawesome CSS-->
+    <link rel="stylesheet" href="{{url_for('static',filename='libraries/fontawesome-free-5.15.4-web/css/all.css')}}">
+
+	<!-- My custom CSS -->
+	<link rel="stylesheet" href="{{ url_for('static', filename= 'css/style.css') }}">
+	<link rel="stylesheet" href="{{ url_for('static', filename= 'css/dashboardv2.css') }}">
+	<link rel="stylesheet" href="{{ url_for('static', filename= 'css/progress_bar.css') }}">
+	<link rel="stylesheet" href="{{ url_for('static', filename= 'css/group_dashboardv2_home.css') }}">
+	<link rel="stylesheet" href="{{ url_for('static', filename= 'css/group_dashboardv2_statistics.css') }}">
+	<link rel="stylesheet" href="{{ url_for('static', filename= 'css/hamburger.css') }}">
+	<!--<link rel="stylesheet" href="{{ url_for('static', filename= 'css/group_dashboardv2_submissions.css') }}">-->
+	<link rel="stylesheet" href="{{ url_for('static', filename= 'css/snackbar.css') }}">
+
+	<!-- My custom Scripts -->
+	<script src="{{ url_for('static', filename= 'scripts/snackbar.js') }}"></script>
+	<script src="{{ url_for('static', filename= 'scripts/ajax_calls.js') }}"></script>
+	<script src="{{ url_for('static', filename= 'scripts/confirm_dialog.js') }}"></script>
+	<script src="{{ url_for('static', filename= 'scripts/utilities.js') }}"></script>
+
+	<!-- Title -->
+	<title>{% block title %} {% endblock %}</title>
+</head>
+
+<body>
+	<main>
+		<!-- Sidebar -->
+		<div id="mysidebar" class="sidebar">
+			<ul class="sidebar-navlink">
+				<li>
+					<a href="/dashboard/" style="text-decoration:none;">
+						<i class="fa fa-home"></i>
+						<span>Home</span>
+					</a>
+				</li>
+				<li>
+					<a href="/dashboard/statistics" style="text-decoration:none;">
+						<i class="fas fa-chart-pie"></i>
+						<span>Statistics</span>
+					</a>
+				</li>
+				<!--<li>
+					<a href="/dashboard/submissions" style="text-decoration:none;">
+						<i class="fas fa-paper-plane"></i>
+						<span>Submissions</span>
+					</a>
+				</li>-->
+				<li>
+					<a href="/dashboard/profile" style="text-decoration:none;">
+						<i class="fas fa-user-circle"></i>
+						<span>Profile</span>
+					</a>
+				</li>
+				<li>
+					<a href="/" style="text-decoration:none;">
+						<i class="fas fa-sign-out-alt"></i>
+						<span>Exit</span>
+					</a>
+				</li>
+			</ul>
+			<button onclick="toggleMenu()" id="toogleBtn" class="colleps-btn">
+				<i class="fas fa-angle-double-up"></i>
+			</button>
+		</div>
+
+		<!-- Fake sidebar to move content correctly -->
+		<div id="mysidebar-bottom" class="sidebar-bottom">
+			<ul class="sidebar-navlink">
+				<li>
+					<a href="/dashboard/" style="text-decoration:none;">
+						<i class="fa fa-home"></i>
+						<span>Home</span>
+					</a>
+				</li>
+				<li>
+					<a href="/dashboard/statistics" style="text-decoration:none;">
+						<i class="fas fa-chart-pie"></i>
+						<span>Statistics</span>
+					</a>
+				</li>
+				<!--<li>
+					<a href="/dashboard/submissions" style="text-decoration:none;">
+						<i class="fas fa-paper-plane"></i>
+						<span>Submissions</span>
+					</a>
+				</li>-->
+				<li>
+					<a href="/dashboard/profile" style="text-decoration:none;">
+						<i class="fas fa-user-circle"></i>
+						<span>Profile</span>
+					</a>
+				</li>
+				<li>
+					<a href="/" style="text-decoration:none;">
+						<i class="fas fa-sign-out-alt"></i>
+						<span>Exit</span>
+					</a>
+				</li>
+			</ul>
+
+		</div>
+
+		<section>
+			<div onclick="toggleDark()" class="toggle-dark-theme">
+				<button>
+					<div class="sun icon"></div>
+				</button>
+			</div>
+
+			<!-- Spacer top to avoid overlapping content below the header bar -->
+			<div class="row spacer-top"></div>
+
+			<!-- The actual content inside the page -->
+			<div class="content-page ">
+				{% block content %} {% endblock %}
+			</div>
+
+			<!-- Spacer top to avoid overlapping content below the bottom bar -->
+			<div class="row spacer-bottom"></div>
+
+			<!-- The bottom navbar used for smarpthones -->
+			<div class="navbar">
+				<a href="/dashboard/" style="text-decoration:none;">
+					<i class="fa fa-home"></i>
+				</a>
+				<a href="/dashboard/statistics" style="text-decoration:none;">
+					<i class="fas fa-chart-pie"></i>
+				</a>
+				<!--<a href="/dashboard/submissions" style="text-decoration:none;">
+					<i class="fas fa-paper-plane"></i>
+				</a>-->
+				<a href="/dashboard/profile" style="text-decoration:none;">
+					<i class="fas fa-user-circle"></i>
+				</a>
+				<a href="/" style="text-decoration:none;">
+					<i class="fas fa-sign-out-alt"></i>
+				</a>
+			</div>
+
+			<!-- The snackbar used for errors -->
+			<div id="snackbar">
+				<span id="snackbar-error-code"></span>
+				<span id="snackbar-error-message"></span>
+			</div>
+
+		</section>
+	</main>
+</body>
+
+<script>
+	const body = document.querySelector("body");
+	const mysidebar = document.getElementById("mysidebar");
+	const mysidebarbottom = document.getElementById("mysidebar-bottom");
+	function toggleDark() {
+		if (body.classList.contains("dark")) {
+			body.classList.remove("dark");
+			localStorage.setItem("theme", "light");
+		} else {
+			body.classList.add("dark");
+			localStorage.setItem("theme", "dark");
+		}
+	}
+	if (localStorage.getItem("theme") === "dark") {
+		body.classList.add("dark");
+	}
+
+	function toggleMenu() {
+		mysidebar.classList.toggle("shrink_sidebar");
+		mysidebarbottom.classList.toggle("shrink_sidebar");
+	}
+</script>

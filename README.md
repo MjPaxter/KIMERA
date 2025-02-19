@@ -1,3 +1,14 @@
+# KIMERA
+## Kubernetes Infrastructure for Managed Evaluation and Resource Access
+**KIMERA** (**K**ubernetes **I**nfrastructure for **M**anaged **E**valuation and **R**esource **A**ccess) is a cloud-based platform for Information Retrieval (IR) evaluation. It extends the Evaluation-as-a-Service model into Evaluation-in-the-Cloud, enabling researchers to code and execute systems directly via their browsers. Built on Docker and Kubernetes, KIMERA provides a scalable, secure, and fault-tolerant environment for IR experiments. It monitors resource usage, ensures reproducibility, and facilitates access to external computational resources, such as quantum computers. KIMERA has been used in QuantumCLEF, as well as for Quantum Computing tutorials at ECIR and SIGIR conferences.
+
+## The infrastructure components
+<center>
+
+![KIMERA Pipeline](https://raw.githubusercontent.com/MjPaxter/KIMERA/main/images/Infrastructure.png)
+</center>
+
+
 # Instructions to setup the infrastructure
 We provide here the instructions to setup the infrastructure on a Ubuntu machine. The setup requires admin privileges.
 
